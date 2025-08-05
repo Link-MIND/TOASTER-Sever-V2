@@ -1,0 +1,7 @@
+dependencies {
+    implementation project(':toaster-core')
+    implementation project(':toaster-domain')
+    implementation project(':toaster-infrastructure')
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+}

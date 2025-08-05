@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ToasterExternalApiApplication {
+public class ToasterApiApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ToasterExternalApiApplication.class, args);
+        SpringApplication.run(ToasterApiApplication.class, args);
     }
 }

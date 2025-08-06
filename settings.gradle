@@ -1,0 +1,7 @@
+rootProject.name = 'TOASTER-SERVER-V2'
+
+include 'toaster-core'
+include 'toaster-domain'
+include 'toaster-infrastructure'
+include 'toaster-api'
+include 'toaster-batch'

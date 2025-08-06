@@ -39,13 +39,7 @@ subprojects {
     jar { enabled = true }
 }
 
-project(':toaster-api') {
-    apply plugin: 'org.springframework.boot'
-    bootJar { enabled = true }
-    jar { enabled = false }
-}
-
-project(':toaster-batch') {
+project(':toaster-bootstrap') {
     apply plugin: 'org.springframework.boot'
     bootJar { enabled = true }
     jar { enabled = false }

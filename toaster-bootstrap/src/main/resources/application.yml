@@ -17,3 +17,10 @@ spring:
         format_sql: true
         show_sql: false
         dialect: org.hibernate.dialect.MySQLDialect
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true

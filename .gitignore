@@ -35,3 +35,4 @@ out/
 
 ### VS Code ###
 .vscode/
+/toaster-bootstrap/src/main/resources/application-secret.properties

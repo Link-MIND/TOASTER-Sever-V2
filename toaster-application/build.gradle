@@ -1,0 +1,4 @@
+dependencies {
+    implementation(project(":toaster-common"))
+    implementation(project(":toaster-domain"))
+}

@@ -2,6 +2,8 @@ package com.app.toaster.toast.model;
 
 import java.time.LocalDateTime;
 
+import org.springframework.cglib.core.Local;
+
 import lombok.Getter;
 
 @Getter
@@ -9,48 +11,32 @@ public class Toast {
 
 	private final Long id;
 	private final Long userId;
-	private Long categoryId;
+	private Long clipId;
 	private String title;
 	private String linkUrl;
 	private Boolean isRead;
 	private String thumbnailUrl;
 	private final LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
+	private LocalDateTime burnedAt;
+	private boolean isTimerEnabled;
 
-	public Toast(Long id, Long userId, Long categoryId, String title, String linkUrl, Boolean isRead,
-		String thumbnailUrl, LocalDateTime createdAt, LocalDateTime updatedAt) {
+	public Toast(Long id, Long userId, Long clipId, String title, String linkUrl, Boolean isRead,
+		String thumbnailUrl, LocalDateTime createdAt, LocalDateTime updatedAt, LocalDateTime burnedAt, boolean isTimerEnabled) {
 		this.id = id;
 		this.userId = userId;
-		this.categoryId = categoryId;
+		this.clipId = clipId;
 		this.title = title;
 		this.linkUrl = linkUrl;
 		this.isRead = isRead;
 		this.thumbnailUrl = thumbnailUrl;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
+		this.burnedAt = burnedAt;
+		this.isTimerEnabled = isTimerEnabled;
 	}
 
-	public void updateTitle(String title) {
-		this.title = title;
-	}
-
-	public void updateIsRead(Boolean isRead) {
-		this.isRead = isRead;
-	}
-
-	public void updateCategory(Long categoryId) {
-		this.categoryId = categoryId;
-	}
-
-	public void updateThumbnail(String thumbnailUrl) {
-		this.thumbnailUrl = thumbnailUrl;
-	}
-
-	public void setUpdatedNow() {
-		this.updatedAt = LocalDateTime.now();
-	}
-
-	public boolean isOwner(Long requestUserId) {
-		return this.userId.equals(requestUserId);
+	public static Toast create(Long userId, Long clipId, String title, String linkUrl, String thumbnailUrl, LocalDateTime burnedAt, boolean isTimerEnabled) {
+		return new Toast(null, userId, clipId, title, linkUrl, null, thumbnailUrl, null, null, burnedAt, isTimerEnabled);
 	}
 }

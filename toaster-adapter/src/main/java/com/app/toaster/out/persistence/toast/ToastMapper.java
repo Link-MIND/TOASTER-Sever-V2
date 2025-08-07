@@ -11,23 +11,27 @@ public class ToastMapper {
 		return new Toast(
 			entity.getId(),
 			entity.getUserId(),
-			entity.getCategoryId(),
+			entity.getClipId(),
 			entity.getTitle(),
 			entity.getLinkUrl(),
 			entity.getIsRead(),
 			entity.getThumbnailUrl(),
 			entity.getCreatedAt(),
-			entity.getUpdateAt()
+			entity.getUpdateAt(),
+			entity.getBurnedAt(),
+			entity.getIsTimerEnabled()
 		);
 	}
 
-	public ToastEntity toEntity(Toast domain, Long userId, Long categoryId) {
+	public ToastEntity toEntity(Toast domain) {
 		return ToastEntity.builder()
-			.userId(userId)
-			.categoryId(categoryId)
+			.userId(domain.getUserId())
+			.clipId(domain.getClipId())
 			.title(domain.getTitle())
 			.linkUrl(domain.getLinkUrl())
 			.thumbnailUrl(domain.getThumbnailUrl())
+			.burnedAt(domain.getBurnedAt())
+			.isTimerEnabled(domain.isTimerEnabled())
 			.build();
 	}
 }

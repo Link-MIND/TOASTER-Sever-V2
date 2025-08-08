@@ -11,6 +11,7 @@ import com.app.toaster.exception.model.CustomException;
 import com.app.toaster.parse.port.out.ParsedOgResult;
 import com.app.toaster.toast.model.Toast;
 import com.app.toaster.toast.port.in.CreateToastUseCase;
+import com.app.toaster.toast.port.in.command.CreateToastCommand;
 import com.app.toaster.toast.port.out.LoadClipPort;
 import com.app.toaster.toast.port.out.LoadUserPort;
 import com.app.toaster.toast.port.out.ParseOgTagPort;
@@ -34,15 +35,15 @@ public class SaveToastService implements CreateToastUseCase {
 
 	@Override
 	@Transactional
-	public void createToast(Long userId, String linkUrl, Long clipId, boolean isTimerEnabled) {
+	public void createToast(CreateToastCommand command) {
 		//todo-mh 주석제거
 		//validate(userId, clipId);
 
-		ParsedOgResult res = parseOgTagPort.parse(linkUrl);
+		ParsedOgResult res = parseOgTagPort.parse(command.linkUrl());
 		String thumbnail = checkIsBasicImage(res.imageAdvanced());
-		LocalDateTime burnedAt = isTimerEnabled? LocalDateTime.now().plusDays(7) : null;
+		LocalDateTime burnedAt = command.isTimerEnabled()? LocalDateTime.now().plusDays(7) : null;
 
-		Toast toast = Toast.create(userId, clipId, res.titleAdvanced(), linkUrl, thumbnail, burnedAt, isTimerEnabled);
+		Toast toast = Toast.create(command.userId(), command.clipId(), res.titleAdvanced(), command.linkUrl(), thumbnail, burnedAt, command.isTimerEnabled());
 		saveToastPort.save(toast);
 	}
 

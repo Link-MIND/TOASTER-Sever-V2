@@ -11,7 +11,7 @@ import com.app.toaster.exception.model.CustomException;
 import com.app.toaster.toast.model.Toast;
 import com.app.toaster.toast.port.in.CreateToastUseCase;
 import com.app.toaster.toast.port.in.command.CreateToastCommand;
-import com.app.toaster.toast.port.out.LoadClipPort;
+import com.app.toaster.common.clip.port.out.CheckClipOwnerPort;
 import com.app.toaster.toast.port.out.LoadUserPort;
 import com.app.toaster.toast.port.out.ParseOgTagPort;
 import com.app.toaster.toast.port.out.ParsedOgResult;
@@ -28,7 +28,7 @@ public class SaveToastService implements CreateToastUseCase {
 	private final SaveToastPort saveToastPort;
 	private final ParseOgTagPort parseOgTagPort;
 	private final LoadUserPort loadUserPort;
-	private final LoadClipPort loadClipPort;
+	private final CheckClipOwnerPort checkClipOwnerPort;
 
 	@Value("${static-image.root}")
 	private String BASIC_ROOT;
@@ -52,7 +52,7 @@ public class SaveToastService implements CreateToastUseCase {
 			throw new CustomException(Error.NOT_FOUND_USER_EXCEPTION, Error.NOT_FOUND_USER_EXCEPTION.getMessage());
 		}
 
-		if (clipId != null && !loadClipPort.existsByIdAndUserId(clipId, userId)) {
+		if (clipId != null && !checkClipOwnerPort.existsByIdAndUserId(clipId, userId)) {
 			throw new CustomException(Error.UNAUTHORIZED_ACCESS, "해당 유저의 클립이 아닙니다.");
 		}
 	}

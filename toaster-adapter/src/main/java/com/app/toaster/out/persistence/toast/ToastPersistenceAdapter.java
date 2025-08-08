@@ -12,11 +12,10 @@ import lombok.RequiredArgsConstructor;
 public class ToastPersistenceAdapter implements SaveToastPort {
 
 	private final ToastRepository toastRepository;
-	private final ToastMapper toastMapper;
 
 	@Override
 	public void save(Toast toast) {
-		ToastEntity entity = toastMapper.toEntity(toast);
+		ToastEntity entity = ToastMapper.toEntity(toast);
 		toastRepository.save(entity);
 	}
 }

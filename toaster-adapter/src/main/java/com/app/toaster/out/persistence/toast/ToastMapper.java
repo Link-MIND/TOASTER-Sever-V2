@@ -7,7 +7,7 @@ import com.app.toaster.toast.model.Toast;
 @Component
 public class ToastMapper {
 
-	public Toast toDomain(ToastEntity entity) {
+	public static Toast toDomain(ToastEntity entity) {
 		return new Toast(
 			entity.getId(),
 			entity.getUserId(),
@@ -23,7 +23,7 @@ public class ToastMapper {
 		);
 	}
 
-	public ToastEntity toEntity(Toast domain) {
+	public static ToastEntity toEntity(Toast domain) {
 		return ToastEntity.builder()
 			.userId(domain.getUserId())
 			.clipId(domain.getClipId())

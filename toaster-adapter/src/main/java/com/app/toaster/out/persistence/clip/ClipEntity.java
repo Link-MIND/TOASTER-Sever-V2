@@ -6,6 +6,8 @@ import com.app.toaster.toast.enums.ClipType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -32,6 +34,7 @@ class ClipEntity {
 	private int priority;
 
 	@Column(nullable = false)
+	@Enumerated(EnumType.STRING)
 	private ClipType type;
 
 	private String members;

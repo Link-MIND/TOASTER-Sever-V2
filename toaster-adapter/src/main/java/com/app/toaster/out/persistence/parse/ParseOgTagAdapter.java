@@ -1,7 +1,8 @@
-package com.app.toaster.parse.service;
+package com.app.toaster.out.persistence.parse;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+
 import javax.net.ssl.SSLHandshakeException;
 
 import org.jsoup.Jsoup;
@@ -12,17 +13,17 @@ import org.springframework.stereotype.Service;
 
 import com.app.toaster.exception.Error;
 import com.app.toaster.exception.model.CustomException;
-import com.app.toaster.parse.port.out.ParsedOgResult;
 import com.app.toaster.toast.port.out.ParseOgTagPort;
+import com.app.toaster.toast.port.out.ParsedOgResult;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-public class ParsingService implements ParseOgTagPort {
+public class ParseOgTagAdapter implements ParseOgTagPort {
 	private final String BASIC_THUMBNAIL;
 
-	public ParsingService(@Value("${static-image.url}") final String basicThumbnail) {
+	public ParseOgTagAdapter(@Value("${static-image.url}") final String basicThumbnail) {
 		this.BASIC_THUMBNAIL = basicThumbnail;
 	}
 

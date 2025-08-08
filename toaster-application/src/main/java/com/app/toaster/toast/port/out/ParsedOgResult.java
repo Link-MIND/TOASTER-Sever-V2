@@ -1,4 +1,4 @@
-package com.app.toaster.parse.port.out;
+package com.app.toaster.toast.port.out;
 
 public record ParsedOgResult(String titleAdvanced, String imageAdvanced) {
 	public static ParsedOgResult of(String titleAdvanced, String imageAdvanced){

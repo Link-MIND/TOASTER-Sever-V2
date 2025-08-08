@@ -8,13 +8,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.app.toaster.exception.Error;
 import com.app.toaster.exception.model.CustomException;
-import com.app.toaster.parse.port.out.ParsedOgResult;
 import com.app.toaster.toast.model.Toast;
 import com.app.toaster.toast.port.in.CreateToastUseCase;
 import com.app.toaster.toast.port.in.command.CreateToastCommand;
 import com.app.toaster.toast.port.out.LoadClipPort;
 import com.app.toaster.toast.port.out.LoadUserPort;
 import com.app.toaster.toast.port.out.ParseOgTagPort;
+import com.app.toaster.toast.port.out.ParsedOgResult;
 import com.app.toaster.toast.port.out.SaveToastPort;
 
 import lombok.RequiredArgsConstructor;

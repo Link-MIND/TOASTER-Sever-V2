@@ -11,9 +11,30 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: create-drop
     properties:
       hibernate:
         format_sql: true
         show_sql: false
         dialect: org.hibernate.dialect.MySQLDialect
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    display-request-duration: true
+    operations-sorter: method
+
+static-image:
+  root: ${IMAGE_ROOT}
+  profile: users/basic-profile.png
+  url: users/basic-thumbnail.png
+
+
+jwt:
+  secret: ${JWT_SECRET}
+  kakao_client_id: ${JWT_KAKAO_CLIENT_ID}
+  KAKAO_URL: ${JWT_KAKAO_URL}
+  KAKAO_WITHDRAW: ${JWT_KAKAO_WITHDRAW}
+  KAKAO_AK: ${JWT_KAKAO_AK}

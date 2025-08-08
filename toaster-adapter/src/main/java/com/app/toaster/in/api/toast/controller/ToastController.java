@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/v2/toast")
 @Validated
 @Tag(name = "Toast", description = "토스트(링크 저장) 관련 API")
-public class ToastController {
+class ToastController {
 	private final SaveToastService toastService;
 
 	@Operation(summary = "토스트 생성", description = "새로운 링크 저장")

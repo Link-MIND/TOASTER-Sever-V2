@@ -1,5 +1,5 @@
 package com.app.toaster.user.enums;
 
 public enum OsType {
-	APPLE, ANDROID
+	IOS, ANDROID
 }

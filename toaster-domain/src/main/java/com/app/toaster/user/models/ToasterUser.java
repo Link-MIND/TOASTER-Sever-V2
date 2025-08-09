@@ -26,4 +26,9 @@ public class ToasterUser {
     public static ToasterUser createToasterUser(String nickname, String socialId, String refreshToken, String fcmToken, Boolean fcmIsAllowed, String profile){
         return new ToasterUser(null, nickname, socialId, refreshToken, fcmToken, fcmIsAllowed, profile);
     }
+
+    public void updateFcmIsAllowed(Boolean isAllowed) {
+        this.fcmIsAllowed = isAllowed;
+    }
+
 }

@@ -51,4 +51,9 @@ class UserEntity extends BaseTimeEntity {
 		this.socialId = socialId;
 		this.socialType = socialType;
 	}
+
+	public void updateFcmIsAllowed(boolean isAllowed) {
+		this.fcmIsAllowed = isAllowed;
+	}
+
 }

@@ -47,6 +47,9 @@ class UserEntity extends BaseTimeEntity {
 	@Column(nullable = false)
 	private OsType os;
 
+	@Column(nullable = true)
+	private String uniqueKey;
+
 	@Builder
 	public UserEntity(String nickname, String socialId, SocialType socialType) {
 		this.nickname = nickname;
@@ -64,6 +67,14 @@ class UserEntity extends BaseTimeEntity {
 			return;
 		}
 		throw new CustomException(Error.BAD_REQUEST_OS, Error.BAD_REQUEST_OS.getMessage());
+	}
+
+	public void updateUniqueKey(String uniqueKey) {
+		if (uniqueKey != null && !uniqueKey.isBlank()) {
+			this.uniqueKey = uniqueKey;
+			return;
+		}
+		throw new CustomException(Error.BAD_REQUEST_UNIQUEKEY, Error.BAD_REQUEST_UNIQUEKEY.getMessage());
 	}
 
 }

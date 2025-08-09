@@ -1,7 +1,7 @@
 package com.app.toaster.adapter.in.user_allow_push;
 
-import com.app.toaster.adapter.in.user_allow_push.command.UpdateAllowedPushCommand;
 import com.app.toaster.application.port.user_allow_push.in.UserAllowPushUseCase;
+import com.app.toaster.application.port.user_allow_push.in.command.UpdateAllowedPushCommand;
 import com.app.toaster.auth.UserId;
 import com.app.toaster.dto.ApiResponse;
 import com.app.toaster.exception.Success;

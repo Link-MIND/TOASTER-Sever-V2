@@ -1,4 +1,4 @@
-package com.app.toaster.adapter.in.user_allow_push.command;
+package com.app.toaster.application.port.user_allow_push.in.command;
 
 import com.app.toaster.adapter.in.user_allow_push.UpdateAllowedPushRequest;
 

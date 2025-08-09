@@ -34,6 +34,7 @@ public enum Error {
 	MALFORMED_URL_EXEPTION(HttpStatus.BAD_REQUEST, "url 링크가 잘못된 것 같습니다."),
 	BAD_REQUEST_REMIND_TIME(HttpStatus.BAD_REQUEST, "RemindTime 값이 잘못요청 되었습니다."),
 	BAD_REQUEST_OS(HttpStatus.BAD_REQUEST, "OS 필드가 비어있습니다."),
+	BAD_REQUEST_UNIQUEKEY(HttpStatus.BAD_REQUEST, "uniquekey가 비어있습니다."),
 	INVALID_APPLE_PUBLIC_KEY(HttpStatus.BAD_REQUEST, "유효하지않은 애플 퍼블릭 키 입니다."),
 	INVALID_APPLE_IDENTITY_TOKEN(HttpStatus.BAD_REQUEST, "잘못된 아이덴티티 토큰입니다."),
 	REQUEST_METHOD_VALIDATION_EXCEPTION(HttpStatus.BAD_REQUEST, "잘못된 메소드입니다."),

@@ -1,6 +1,5 @@
 dependencies {
-    implementation(project(":toaster-adapter"))
-    implementation(project(":toaster-application"))
+    implementation(project(':toaster-api'))
     implementation(project(":toaster-batch"))
     implementation(project(":toaster-domain"))
     implementation(project(":toaster-common"))

@@ -1,5 +1,5 @@
 dependencies {
-    implementation(project(":toaster-application"))
+    implementation(project(":toaster-api"))
     implementation(project(":toaster-domain"))
     implementation(project(":toaster-common"))
 

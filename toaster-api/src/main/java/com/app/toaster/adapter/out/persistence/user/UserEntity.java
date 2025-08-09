@@ -1,6 +1,8 @@
 package com.app.toaster.adapter.out.persistence.user;
 
 import com.app.toaster.entity.BaseTimeEntity;
+import com.app.toaster.exception.Error;
+import com.app.toaster.exception.model.CustomException;
 import com.app.toaster.user.enums.OsType;
 import com.app.toaster.user.enums.SocialType;
 import jakarta.persistence.*;
@@ -54,6 +56,14 @@ class UserEntity extends BaseTimeEntity {
 
 	public void updateFcmIsAllowed(boolean isAllowed) {
 		this.fcmIsAllowed = isAllowed;
+	}
+
+	public void updateOs(OsType os) {
+		if (os != null) {
+			this.os = os;
+			return;
+		}
+		throw new CustomException(Error.BAD_REQUEST_OS, Error.BAD_REQUEST_OS.getMessage());
 	}
 
 }

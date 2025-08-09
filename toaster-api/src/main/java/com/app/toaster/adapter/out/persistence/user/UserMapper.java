@@ -11,7 +11,8 @@ class UserMapper {
             user.getRefreshToken(),
             user.getFcmToken(),
             user.getFcmIsAllowed(),
-            user.getProfile()
+            user.getProfile(),
+            user.getOs()
         );
     }
 }

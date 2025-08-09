@@ -4,7 +4,7 @@ import com.app.toaster.adapter.in.user_allow_push.UpdateAllowedPushResponse;
 import com.app.toaster.adapter.in.user_allow_push.command.UpdateAllowedPushCommand;
 import com.app.toaster.application.port.load_user_setting.out.LoadUserPort;
 import com.app.toaster.application.port.user_allow_push.in.UserAllowPushUseCase;
-import com.app.toaster.application.port.user_allow_push.out.UpdateUserPort;
+import com.app.toaster.application.port.user_allow_push.out.UpdateAllowPushPort;
 import com.app.toaster.exception.Error;
 import com.app.toaster.exception.model.BadRequestException;
 import com.app.toaster.user.models.ToasterUser;
@@ -16,14 +16,14 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 class UserAllowPushService implements UserAllowPushUseCase {
     private final LoadUserPort loadUserPort;
-    private final UpdateUserPort updateUserPort;
+    private final UpdateAllowPushPort updateAllowPushPort;
 
     @Override
     @Transactional
     public UpdateAllowedPushResponse allowPush(UpdateAllowedPushCommand command) {
         ToasterUser user = loadUserPort.findUser(command.userId());
         validatePushAllowStatus(user, command.allowedPush());
-        updateUserPort.allowPush(user.getId(), command.allowedPush());
+        updateAllowPushPort.allowPush(user.getId(), command.allowedPush());
         return UpdateAllowedPushResponse.toResponse(command.allowedPush());
     }
 

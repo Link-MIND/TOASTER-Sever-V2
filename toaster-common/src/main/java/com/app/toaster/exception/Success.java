@@ -1,9 +1,8 @@
 package com.app.toaster.exception;
 
-import org.springframework.http.HttpStatus;
-
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 
 @Getter
 @RequiredArgsConstructor
@@ -44,6 +43,7 @@ public enum Success {
 	UPDATE_PUSH_ALLOWED_SUCCESS(HttpStatus.OK, "푸시알림 수정 성공"),
 	UPDATE_TOAST_TITLE_SUCCESS(HttpStatus.OK, "토스트 제목 수정 성공"),
 	UPDATE_TOAST_CLIP_SUCCESS(HttpStatus.OK, "토스트 클립이동 성공"),
+	UPDATE_OS_SUCCESS(HttpStatus.OK, "os 반영 성공"),
 
 	UPDATE_ISREAD_SUCCESS(HttpStatus.OK, "열람여부 수정 완료"),
 	UPDATE_TIMER_DATETIME_SUCCESS(HttpStatus.OK, "타이머 시간/날짜 수정 완료"),

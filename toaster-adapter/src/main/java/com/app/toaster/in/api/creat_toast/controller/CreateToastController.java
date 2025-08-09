@@ -1,4 +1,4 @@
-package com.app.toaster.in.api.toast.controller;
+package com.app.toaster.in.api.creat_toast.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.toaster.dto.ApiResponse;
 import com.app.toaster.exception.Success;
-import com.app.toaster.in.api.toast.reqeust.CreateToastDto;
+import com.app.toaster.in.api.creat_toast.reqeust.CreateToastDto;
 import com.app.toaster.toast.port.in.CreateToastUseCase;
 import com.app.toaster.toast.port.in.command.CreateToastCommand;
 
@@ -23,11 +23,11 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/v2/toast")
 @Validated
 @Tag(name = "Toast", description = "토스트(링크 저장) 관련 API")
-class ToastController {
+class CreateToastController {
 	private final CreateToastUseCase createToastUseCase;
 
 	@Operation(summary = "토스트 생성", description = "새로운 링크 저장")
-	@PostMapping("/save")
+	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public ApiResponse createToast(
 		// @UserId Long userId,

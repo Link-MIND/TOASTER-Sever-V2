@@ -1,4 +1,4 @@
-package com.app.toaster.in.api.toast.reqeust;
+package com.app.toaster.in.api.creat_toast.reqeust;
 
 import jakarta.annotation.Nullable;
 

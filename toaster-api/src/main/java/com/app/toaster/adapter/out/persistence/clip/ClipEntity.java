@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -28,11 +30,14 @@ class ClipEntity {
 	private ClipType type;
 
 	private String members;
+
+	private LocalDateTime latestReadTime;
 	@Builder
-	public ClipEntity(String title, Long ownerId, int priority) {
+	public ClipEntity(String title, Long ownerId, int priority, LocalDateTime latestReadTime) {
 		this.title = title;
 		this.ownerId = ownerId;
 		this.members = null;
 		this.priority = priority;
+		this.latestReadTime = latestReadTime;
 	}
 }

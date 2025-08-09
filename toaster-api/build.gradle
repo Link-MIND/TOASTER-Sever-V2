@@ -1,5 +1,4 @@
 dependencies {
-    implementation(project(":toaster-application"))
     implementation project(":toaster-common")
     annotationProcessor project(":toaster-common")
     implementation(project(":toaster-domain"))

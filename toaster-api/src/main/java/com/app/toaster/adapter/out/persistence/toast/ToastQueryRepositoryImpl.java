@@ -1,6 +1,5 @@
 package com.app.toaster.adapter.out.persistence.toast;
 
-import com.app.toaster.out.persistence.toast.QToastEntity;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;

@@ -14,6 +14,8 @@ public enum Success {
 	CREATE_TOAST_SUCCESS(HttpStatus.CREATED, "토스트 저장이 완료 되었습니다."),
 	CREATE_UNIQUEKEY_SUCCESS(HttpStatus.CREATED, "유니크키 생성이 완료 되었습니다."),
 	CREATE_TIMER_SUCCESS(HttpStatus.CREATED, "새 타이머 생성 성공"),
+    CREATE_SHARE_CLIP_SUCCESS(HttpStatus.CREATED, "공유클립 생성이 완료 되었습니다."),
+
 
 	/**
 	 * 200 OK
@@ -33,6 +35,7 @@ public enum Success {
 	GET_DUPLICATED_SUCCESS(HttpStatus.OK, "중복 여부 체크 성공"),
 
   	LOGIN_SUCCESS(HttpStatus.OK, "로그인 성공"),
+    UPDATE_VISIBILITY_SHARE_CLIP_SUCCESS(HttpStatus.OK, "공유클립 visible state 변경 성공"),
 	RE_ISSUE_TOKEN_SUCCESS(HttpStatus.OK, "토큰 재발급 성공"),
 	TOKEN_HEALTH_CHECKED_SUCCESS(HttpStatus.OK, "토큰 헬스체크 성공"),
 	SIGNOUT_SUCCESS(HttpStatus.OK, "로그아웃 성공"),

@@ -1,9 +1,8 @@
 package com.app.toaster.exception;
 
-import org.springframework.http.HttpStatus;
-
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 
 @Getter
 @RequiredArgsConstructor
@@ -13,7 +12,10 @@ public enum Success {
 	 * 201 CREATED
 	 */
 	CREATE_TOAST_SUCCESS(HttpStatus.CREATED, "토스트 저장이 완료 되었습니다."),
+	CREATE_UNIQUEKEY_SUCCESS(HttpStatus.CREATED, "유니크키 생성이 완료 되었습니다."),
 	CREATE_TIMER_SUCCESS(HttpStatus.CREATED, "새 타이머 생성 성공"),
+    CREATE_SHARE_CLIP_SUCCESS(HttpStatus.CREATED, "공유클립 생성이 완료 되었습니다."),
+
 
 	/**
 	 * 200 OK
@@ -33,6 +35,7 @@ public enum Success {
 	GET_DUPLICATED_SUCCESS(HttpStatus.OK, "중복 여부 체크 성공"),
 
   	LOGIN_SUCCESS(HttpStatus.OK, "로그인 성공"),
+    UPDATE_VISIBILITY_SHARE_CLIP_SUCCESS(HttpStatus.OK, "공유클립 visible state 변경 성공"),
 	RE_ISSUE_TOKEN_SUCCESS(HttpStatus.OK, "토큰 재발급 성공"),
 	TOKEN_HEALTH_CHECKED_SUCCESS(HttpStatus.OK, "토큰 헬스체크 성공"),
 	SIGNOUT_SUCCESS(HttpStatus.OK, "로그아웃 성공"),
@@ -44,11 +47,13 @@ public enum Success {
 	UPDATE_PUSH_ALLOWED_SUCCESS(HttpStatus.OK, "푸시알림 수정 성공"),
 	UPDATE_TOAST_TITLE_SUCCESS(HttpStatus.OK, "토스트 제목 수정 성공"),
 	UPDATE_TOAST_CLIP_SUCCESS(HttpStatus.OK, "토스트 클립이동 성공"),
+	UPDATE_OS_SUCCESS(HttpStatus.OK, "os 반영 성공"),
 
 	UPDATE_ISREAD_SUCCESS(HttpStatus.OK, "열람여부 수정 완료"),
 	UPDATE_TIMER_DATETIME_SUCCESS(HttpStatus.OK, "타이머 시간/날짜 수정 완료"),
 	UPDATE_TIMER_COMMENT_SUCCESS(HttpStatus.OK, "타이머 코멘트 수정 완료"),
 	CHANGE_TIMER_ALARM_SUCCESS(HttpStatus.OK, "타이머 알람여부 수정 완료"),
+	UPDATE_UNIQUEKEY_SUCCESS(HttpStatus.OK, "uniquekey 수정 완료"),
 	PUSH_ALARM_PERIODIC_SUCCESS(HttpStatus.OK, "푸시알림 활성에 성공했습니다."),
 	PUSH_ALARM_SUCCESS(HttpStatus.OK, "푸시알림 전송에 성공했습니다."),
 	CLEAR_SCHEDULED_TASKS_SUCCESS(HttpStatus.OK, "스케줄러에서 예약된 작업을 제거했습니다."),

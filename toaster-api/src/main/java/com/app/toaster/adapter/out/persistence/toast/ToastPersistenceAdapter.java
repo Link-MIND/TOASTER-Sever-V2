@@ -1,5 +1,7 @@
 package com.app.toaster.adapter.out.persistence.toast;
 
+import java.util.List;
+
 import com.app.toaster.application.port.common.CheckToastOwnerPort;
 import com.app.toaster.application.port.create_toast.out.SaveToastPort;
 import com.app.toaster.toast.model.Toast;
@@ -22,5 +24,11 @@ public class ToastPersistenceAdapter implements SaveToastPort, CheckToastOwnerPo
 	@Override
 	public boolean existsByIdAndUserId(Long toastId, Long userId) {
 		return toastRepository.existsByIdAndUserId(toastId, userId);
+	}
+
+	@Override
+	public boolean allOwnedByUser(Long userId, List<Long> toastIds) {
+		long count = toastRepository.countByIdInAndUserId(toastIds, userId);
+		return count == toastIds.size();
 	}
 }

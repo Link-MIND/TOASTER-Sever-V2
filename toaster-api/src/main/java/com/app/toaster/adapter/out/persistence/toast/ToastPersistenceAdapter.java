@@ -1,19 +1,20 @@
 package com.app.toaster.adapter.out.persistence.toast;
 
+import com.app.toaster.application.port.CheckToastOwnerPort;
 import com.app.toaster.application.port.create_toast.out.SaveToastPort;
 import com.app.toaster.application.port.move_clip.out.UpdateToastClipPort;
 import com.app.toaster.toast.model.Toast;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class ToastPersistenceAdapter implements SaveToastPort, UpdateToastClipPort {
+public class ToastPersistenceAdapter implements SaveToastPort, CheckToastOwnerPort {
 
 	private final ToastRepository toastRepository;
-	private final ToastQueryRepository toastQueryRepository;
 
 	@Override
 	public void save(Toast toast) {
@@ -22,7 +23,7 @@ public class ToastPersistenceAdapter implements SaveToastPort, UpdateToastClipPo
 	}
 
 	@Override
-	public void updateToastClip(List<Long> ids, Long clipId) {
-		toastQueryRepository.bulkUpdateClipIdByIds(ids, clipId);
+	public boolean existsByIdAndUserId(Long toastId, Long userId) {
+		return toastRepository.existsByIdAndUserId(toastId, userId);
 	}
 }

@@ -50,4 +50,8 @@ class ToastEntity extends BaseTimeEntity {
 		this.burnedAt = burnedAt;
 		this.thumbnailUrl = thumbnailUrl;
 	}
+
+	public void setReadStatus(Boolean isRead){
+		this.isRead = isRead;
+	}
 }

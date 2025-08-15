@@ -1,6 +1,6 @@
 package com.app.toaster.application.service.move_clip;
 
-import com.app.toaster.application.port.CheckClipOwnerPort;
+import com.app.toaster.application.port.common.CheckClipOwnerPort;
 import com.app.toaster.application.port.move_clip.in.MoveClipCommand;
 import com.app.toaster.application.port.move_clip.in.MoveClipUseCase;
 import com.app.toaster.application.port.move_clip.out.UpdateToastClipPort;

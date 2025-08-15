@@ -1,6 +1,6 @@
 package com.app.toaster.application.service.create_toast;
 
-import com.app.toaster.application.port.CheckClipOwnerPort;
+import com.app.toaster.application.port.common.CheckClipOwnerPort;
 import com.app.toaster.application.port.create_toast.in.CreateToastUseCase;
 import com.app.toaster.application.port.create_toast.in.command.CreateToastCommand;
 import com.app.toaster.application.port.create_toast.out.FindClipOwnerPort;

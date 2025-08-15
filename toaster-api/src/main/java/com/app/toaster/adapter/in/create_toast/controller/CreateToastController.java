@@ -1,6 +1,6 @@
 package com.app.toaster.adapter.in.create_toast.controller;
 
-import com.app.toaster.adapter.in.create_toast.request.CreateToastDto;
+import com.app.toaster.adapter.in.create_toast.request.CreateToastRequest;
 import com.app.toaster.application.port.create_toast.in.CreateToastUseCase;
 import com.app.toaster.application.port.create_toast.in.command.CreateToastCommand;
 import com.app.toaster.dto.ApiResponse;
@@ -25,7 +25,7 @@ class CreateToastController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public ApiResponse createToast(
 		// @UserId Long userId,
-		@RequestBody CreateToastDto requestDto
+		@RequestBody CreateToastRequest requestDto
 	) {
 		// todo-mh 임의로 userId 1L로 설정, 추후 변경
 		CreateToastCommand command = new CreateToastCommand(

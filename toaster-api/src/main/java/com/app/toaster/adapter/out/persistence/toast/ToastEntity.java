@@ -54,4 +54,8 @@ class ToastEntity extends BaseTimeEntity {
 	public void setReadStatus(Boolean isRead){
 		this.isRead = isRead;
 	}
+
+	public void setTitle(String newTitle){
+		this.title = newTitle;
+	}
 }

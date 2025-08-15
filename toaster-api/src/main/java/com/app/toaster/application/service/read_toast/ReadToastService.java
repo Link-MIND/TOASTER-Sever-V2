@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.app.toaster.application.port.CheckToastOwnerPort;
+import com.app.toaster.application.port.common.CheckToastOwnerPort;
 import com.app.toaster.application.port.read_toast.in.ReadToastCommand;
 import com.app.toaster.application.port.read_toast.in.ReadToastUseCase;
 import com.app.toaster.application.port.read_toast.out.UpdateToastPort;

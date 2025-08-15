@@ -58,6 +58,7 @@ public enum Success {
 	PUSH_ALARM_SUCCESS(HttpStatus.OK, "푸시알림 전송에 성공했습니다."),
 	CLEAR_SCHEDULED_TASKS_SUCCESS(HttpStatus.OK, "스케줄러에서 예약된 작업을 제거했습니다."),
 	UPDATE_POPUP_SUCCESS(HttpStatus.OK, "팝업 데이터 수정 성공"),
+	RESTORE_TOAST_SUCCESS(HttpStatus.OK, "토스트 복구 성공"),
 
 
 	/**

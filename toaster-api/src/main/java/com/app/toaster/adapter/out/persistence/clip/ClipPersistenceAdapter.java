@@ -1,6 +1,6 @@
 package com.app.toaster.adapter.out.persistence.clip;
 
-import com.app.toaster.application.port.CheckClipOwnerPort;
+import com.app.toaster.application.port.common.CheckClipOwnerPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

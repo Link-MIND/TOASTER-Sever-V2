@@ -1,4 +1,4 @@
-package com.app.toaster.adapter.in.edit_toast_title;
+package com.app.toaster.valid;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

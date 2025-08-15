@@ -24,6 +24,8 @@ class BurnedToastEntity {
 	private Long toastId;
 	private NotificationStatus notificationStatus;
 
+	//todo 팝업매니저 id 추가
+
 	@Builder
 	public BurnedToastEntity(LocalDate burnedAt, Long toastId, NotificationStatus notificationStatus) {
 		this.burnedAt = burnedAt;

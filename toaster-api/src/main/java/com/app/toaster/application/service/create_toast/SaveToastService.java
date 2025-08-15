@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Service
@@ -39,7 +40,7 @@ class SaveToastService implements CreateToastUseCase {
 
 		ParsedOgResult res = parseOgTagPort.parse(command.linkUrl());
 		String thumbnail = checkIsBasicImage(res.imageAdvanced());
-		LocalDateTime burnedAt = command.isTimerEnabled()? LocalDateTime.now().plusDays(7) : null;
+		LocalDate burnedAt = command.isTimerEnabled()? LocalDate.now().plusDays(7) : null;
 
 		Toast toast = Toast.create(command.userId(), command.clipId(), res.titleAdvanced(), command.linkUrl(), thumbnail, burnedAt, command.isTimerEnabled());
 		saveToastPort.save(toast);

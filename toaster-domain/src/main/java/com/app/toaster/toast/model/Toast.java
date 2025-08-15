@@ -1,5 +1,6 @@
 package com.app.toaster.toast.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.springframework.cglib.core.Local;
@@ -18,11 +19,11 @@ public class Toast {
 	private String thumbnailUrl;
 	private final LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
-	private LocalDateTime burnedAt;
+	private LocalDate burnedAt;
 	private boolean isTimerEnabled;
 
 	public Toast(Long id, Long userId, Long clipId, String title, String linkUrl, Boolean isRead,
-		String thumbnailUrl, LocalDateTime createdAt, LocalDateTime updatedAt, LocalDateTime burnedAt, boolean isTimerEnabled) {
+		String thumbnailUrl, LocalDateTime createdAt, LocalDateTime updatedAt, LocalDate burnedAt, boolean isTimerEnabled) {
 		this.id = id;
 		this.userId = userId;
 		this.clipId = clipId;
@@ -36,7 +37,7 @@ public class Toast {
 		this.isTimerEnabled = isTimerEnabled;
 	}
 
-	public static Toast create(Long userId, Long clipId, String title, String linkUrl, String thumbnailUrl, LocalDateTime burnedAt, boolean isTimerEnabled) {
+	public static Toast create(Long userId, Long clipId, String title, String linkUrl, String thumbnailUrl, LocalDate burnedAt, boolean isTimerEnabled) {
 		return new Toast(null, userId, clipId, title, linkUrl, null, thumbnailUrl, null, null, burnedAt, isTimerEnabled);
 	}
 }

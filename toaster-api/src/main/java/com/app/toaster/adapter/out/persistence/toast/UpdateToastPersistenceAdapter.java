@@ -35,6 +35,12 @@ public class UpdateToastPersistenceAdapter implements UpdateToastClipPort, Updat
 		entity.setTitle(newTitle);
 	}
 
+	@Override
+	public void restoreToast(Long toastId) {
+		ToastEntity entity = getToastEntity(toastId);
+		entity.store();
+	}
+
 	private ToastEntity getToastEntity(Long toastId){
 		return toastRepository.findById(toastId)
 			.orElseThrow(() -> new CustomException(Error.NOT_FOUND_TOAST_EXCEPTION,

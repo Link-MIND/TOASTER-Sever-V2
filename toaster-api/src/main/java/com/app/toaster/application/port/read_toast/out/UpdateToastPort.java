@@ -2,7 +2,9 @@ package com.app.toaster.application.port.read_toast.out;
 
 public interface UpdateToastPort {
 
-	public void changeReadStatus(Long toastId, Boolean isRead);
+	void changeReadStatus(Long toastId, Boolean isRead);
 
-	public void editToastTitle(Long toastId, String newTitle);
+	void editToastTitle(Long toastId, String newTitle);
+
+	void restoreToast(Long aLong);
 }

@@ -1,12 +1,16 @@
 package com.app.toaster.adapter.out.persistence.toast;
 
 import com.app.toaster.entity.BaseTimeEntity;
+import com.app.toaster.exception.Error;
+import com.app.toaster.exception.model.CustomException;
+
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 @Entity
 @Table(name = "toast")
@@ -35,12 +39,12 @@ class ToastEntity extends BaseTimeEntity {
 	@Column(columnDefinition = "TEXT")
 	private String thumbnailUrl;
 
-	private LocalDateTime burnedAt;
+	private LocalDate burnedAt;
 
 	private Boolean isTimerEnabled;
 
 	@Builder
-	public ToastEntity(Long userId, Long clipId, String title, String linkUrl, String thumbnailUrl, LocalDateTime burnedAt, boolean isTimerEnabled) {
+	public ToastEntity(Long userId, Long clipId, String title, String linkUrl, String thumbnailUrl, LocalDate burnedAt, boolean isTimerEnabled) {
 		this.userId = userId;
 		this.clipId = clipId;
 		this.title = title;
@@ -57,5 +61,12 @@ class ToastEntity extends BaseTimeEntity {
 
 	public void setTitle(String newTitle){
 		this.title = newTitle;
+	}
+
+	public void store() {
+		if(this.burnedAt.isAfter(LocalDate.now())){
+			throw new CustomException(Error.INTERNAL_SERVER_ERROR, "링크가 아직 타지않았어요");
+		}
+		this.burnedAt = LocalDate.now().plusDays(7);
 	}
 }

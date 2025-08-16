@@ -42,6 +42,8 @@ public enum Success {
 	TOKEN_HEALTH_CHECKED_SUCCESS(HttpStatus.OK, "토큰 헬스체크 성공"),
 	SIGNOUT_SUCCESS(HttpStatus.OK, "로그아웃 성공"),
 	DELETE_USER_SUCCESS(HttpStatus.OK, "회원 탈퇴가 정상적으로 이루어졌습니다."),
+    EXIT_SHARE_CLIP_SUCCESS(HttpStatus.OK, "공유클립 나가기가 정상적으로 이루어졌습니다."),
+
 	DELETE_TOAST_SUCCESS(HttpStatus.OK, "토스트 삭제 성공"),
 	DELETE_TIMER_SUCCESS(HttpStatus.OK, "타이머 삭제 성공"),
 	SEARCH_SUCCESS(HttpStatus.OK, "검색 성공"),

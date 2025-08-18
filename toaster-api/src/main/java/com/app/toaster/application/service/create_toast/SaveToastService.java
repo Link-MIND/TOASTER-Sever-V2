@@ -42,7 +42,7 @@ class SaveToastService implements CreateToastUseCase {
 		String thumbnail = checkIsBasicImage(res.imageAdvanced());
 		LocalDate burnedAt = command.isTimerEnabled()? LocalDate.now().plusDays(7) : null;
 
-		Toast toast = Toast.create(command.userId(), command.clipId(), res.titleAdvanced(), command.linkUrl(), thumbnail, burnedAt, command.isTimerEnabled());
+		Toast toast = Toast.create(command.userId(), command.clipId(), res.titleAdvanced(), command.linkUrl(), thumbnail, burnedAt, false, command.isTimerEnabled());
 		saveToastPort.save(toast);
 	}
 

@@ -18,6 +18,7 @@ public class ToastMapper {
 			entity.getCreatedAt(),
 			entity.getUpdateAt(),
 			entity.getBurnedAt(),
+			entity.getIsBurned(),
 			entity.getIsTimerEnabled()
 		);
 	}
@@ -30,6 +31,7 @@ public class ToastMapper {
 			.linkUrl(domain.getLinkUrl())
 			.thumbnailUrl(domain.getThumbnailUrl())
 			.burnedAt(domain.getBurnedAt())
+			.isBurned(domain.isBurned())
 			.isTimerEnabled(domain.isTimerEnabled())
 			.build();
 	}

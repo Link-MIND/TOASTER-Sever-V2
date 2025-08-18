@@ -41,6 +41,13 @@ public class UpdateToastPersistenceAdapter implements UpdateToastClipPort, Updat
 		entity.store();
 	}
 
+	@Override
+	public void updateToastBurn(List<Long> ids) {
+		List<ToastEntity> entities = toastRepository.findAllById(ids);
+		entities.forEach(ToastEntity::burnToast);
+		toastRepository.saveAll(entities);
+	}
+
 	private ToastEntity getToastEntity(Long toastId){
 		return toastRepository.findById(toastId)
 			.orElseThrow(() -> new CustomException(Error.NOT_FOUND_TOAST_EXCEPTION,

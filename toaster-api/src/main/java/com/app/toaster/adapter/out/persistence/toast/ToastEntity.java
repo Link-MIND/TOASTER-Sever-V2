@@ -41,10 +41,12 @@ class ToastEntity extends BaseTimeEntity {
 
 	private LocalDate burnedAt;
 
+	private Boolean isBurned;
+
 	private Boolean isTimerEnabled;
 
 	@Builder
-	public ToastEntity(Long userId, Long clipId, String title, String linkUrl, String thumbnailUrl, LocalDate burnedAt, boolean isTimerEnabled) {
+	public ToastEntity(Long userId, Long clipId, String title, String linkUrl, String thumbnailUrl, LocalDate burnedAt,boolean isBurned, boolean isTimerEnabled) {
 		this.userId = userId;
 		this.clipId = clipId;
 		this.title = title;
@@ -52,6 +54,7 @@ class ToastEntity extends BaseTimeEntity {
 		this.isRead = false;
 		this.isTimerEnabled = isTimerEnabled;
 		this.burnedAt = burnedAt;
+		this.isBurned = isBurned;
 		this.thumbnailUrl = thumbnailUrl;
 	}
 
@@ -68,5 +71,9 @@ class ToastEntity extends BaseTimeEntity {
 			throw new CustomException(Error.INTERNAL_SERVER_ERROR, "링크가 아직 타지않았어요");
 		}
 		this.burnedAt = LocalDate.now().plusDays(7);
+	}
+
+	public void burnToast(){
+		this.isBurned = true;
 	}
 }

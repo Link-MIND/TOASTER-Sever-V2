@@ -1,4 +1,4 @@
-package com.app.toaster.adapter.out.persistence.burned_toast;
+package com.app.toaster.adapter.out.persistence.toast;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -20,8 +20,14 @@ class BurnedToastEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(nullable = false)
 	private LocalDate burnedAt;
+
+	@Column(nullable = false)
 	private Long toastId;
+
+	@Column(nullable = false)
+	@Enumerated(EnumType.STRING)
 	private NotificationStatus notificationStatus;
 
 	//todo 팝업매니저 id 추가

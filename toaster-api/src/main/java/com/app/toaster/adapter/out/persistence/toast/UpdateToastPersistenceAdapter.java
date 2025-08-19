@@ -45,7 +45,6 @@ public class UpdateToastPersistenceAdapter implements UpdateToastClipPort, Updat
 	public void updateToastBurn(List<Long> ids) {
 		List<ToastEntity> entities = toastRepository.findAllById(ids);
 		entities.forEach(ToastEntity::burnToast);
-		toastRepository.saveAll(entities);
 	}
 
 	private ToastEntity getToastEntity(Long toastId){

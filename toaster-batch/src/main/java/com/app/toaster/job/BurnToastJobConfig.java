@@ -4,19 +4,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.Job;
-import org.springframework.batch.core.JobExecution;
-import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.JobParametersInvalidException;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.StepExecution;
-import org.springframework.batch.core.StepExecutionListener;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.job.builder.JobBuilder;
-import org.springframework.batch.core.launch.support.RunIdIncrementer;
-import org.springframework.batch.core.listener.JobExecutionListenerSupport;
-import org.springframework.batch.core.listener.StepExecutionListenerSupport;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.ItemReader;
@@ -29,6 +21,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import com.app.toaster.adapter.in.burn_toast.BurnToastPort;
+import com.app.toaster.adapter.in.burn_toast.ExpiredToastPort;
 import com.app.toaster.application.port.read_toast.out.UpdateToastPort;
 
 import lombok.RequiredArgsConstructor;
@@ -42,6 +35,7 @@ public class BurnToastJobConfig {
     private final JobRepository jobRepository;
     private final PlatformTransactionManager tx;
     private final BurnToastPort burnToastPort;
+    private final ExpiredToastPort expiredToastPort;
     private final UpdateToastPort updateToastPort;
 
 
@@ -76,7 +70,7 @@ public class BurnToastJobConfig {
     @StepScope
     public ListItemReader<Long> expiredToastIdReader( @Value("#{jobParameters['targetDate']}") String targetDate) {
         LocalDate date = LocalDate.parse(targetDate, DateTimeFormatter.ISO_LOCAL_DATE);
-        List<Long> expired = burnToastPort.findExpiredToasts(date);
+        List<Long> expired = expiredToastPort.findExpiredToasts(date);
         return new ListItemReader<>(expired);
     }
 

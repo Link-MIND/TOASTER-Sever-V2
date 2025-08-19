@@ -7,7 +7,5 @@ import com.app.toaster.toast.model.Toast;
 
 public interface BurnToastPort {
 
-	List<Long> findExpiredToasts(LocalDate now);
-
 	void markAsBurned(List<Long> toastIds);
 }

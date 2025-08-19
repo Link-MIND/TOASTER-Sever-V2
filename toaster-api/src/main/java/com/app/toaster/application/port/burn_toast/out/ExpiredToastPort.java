@@ -1,4 +1,4 @@
-package com.app.toaster.adapter.in.burn_toast;
+package com.app.toaster.application.port.burn_toast.out;
 
 import java.time.LocalDate;
 import java.util.List;

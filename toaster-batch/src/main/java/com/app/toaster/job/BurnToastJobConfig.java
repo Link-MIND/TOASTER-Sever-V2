@@ -20,8 +20,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import com.app.toaster.adapter.in.burn_toast.BurnToastPort;
-import com.app.toaster.adapter.in.burn_toast.ExpiredToastPort;
+import com.app.toaster.application.port.burn_toast.out.BurnToastPort;
+import com.app.toaster.application.port.burn_toast.out.ExpiredToastPort;
 import com.app.toaster.application.port.read_toast.out.UpdateToastPort;
 
 import lombok.RequiredArgsConstructor;

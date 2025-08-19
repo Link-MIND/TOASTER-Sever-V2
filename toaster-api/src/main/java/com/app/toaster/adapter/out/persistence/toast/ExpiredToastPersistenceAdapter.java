@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.app.toaster.adapter.in.burn_toast.ExpiredToastPort;
+import com.app.toaster.application.port.burn_toast.out.ExpiredToastPort;
 import com.app.toaster.toast.model.Toast;
 
 import lombok.RequiredArgsConstructor;

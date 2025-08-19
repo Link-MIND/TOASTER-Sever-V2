@@ -5,8 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.app.toaster.adapter.in.burn_toast.BurnToastPort;
-import com.app.toaster.adapter.in.burn_toast.ExpiredToastPort;
+import com.app.toaster.application.port.burn_toast.out.BurnToastPort;
 import com.app.toaster.burned_toast.enums.NotificationStatus;
 import com.app.toaster.toast.model.Toast;
 

@@ -1,6 +1,7 @@
 package com.app.toaster.scheduler;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import org.springframework.batch.core.Job;
@@ -22,10 +23,10 @@ public class BurnToastJobScheduler {
     private final JobLauncher jobLauncher;
     private final Job burnToastJob;
 
-    // 매일 새벽 3시(한국시간)
-    @Scheduled(cron = "0 0 3 * * *", zone = "Asia/Seoul")
+    // 매일 밤 12시
+    @Scheduled(cron = "0 0 0 * * *", zone = "Asia/Seoul")
     public void run() throws Exception {
-        log.info("[{}] 스케줄러 시작", LocalDate.now());
+        log.info("[{}] 스케줄러 시작", LocalDateTime.now());
 
         LocalDate target = LocalDate.now(java.time.ZoneId.of("Asia/Seoul"));
         JobParameters params = new JobParametersBuilder()

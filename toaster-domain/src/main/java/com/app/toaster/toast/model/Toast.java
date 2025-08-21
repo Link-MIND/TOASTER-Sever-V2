@@ -20,10 +20,11 @@ public class Toast {
 	private final LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 	private LocalDate burnedAt;
+	private boolean isBurned;
 	private boolean isTimerEnabled;
 
 	public Toast(Long id, Long userId, Long clipId, String title, String linkUrl, Boolean isRead,
-		String thumbnailUrl, LocalDateTime createdAt, LocalDateTime updatedAt, LocalDate burnedAt, boolean isTimerEnabled) {
+		String thumbnailUrl, LocalDateTime createdAt, LocalDateTime updatedAt, LocalDate burnedAt,boolean isBurned, boolean isTimerEnabled) {
 		this.id = id;
 		this.userId = userId;
 		this.clipId = clipId;
@@ -34,10 +35,11 @@ public class Toast {
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 		this.burnedAt = burnedAt;
+		this.isBurned = isBurned;
 		this.isTimerEnabled = isTimerEnabled;
 	}
 
-	public static Toast create(Long userId, Long clipId, String title, String linkUrl, String thumbnailUrl, LocalDate burnedAt, boolean isTimerEnabled) {
-		return new Toast(null, userId, clipId, title, linkUrl, null, thumbnailUrl, null, null, burnedAt, isTimerEnabled);
+	public static Toast create(Long userId, Long clipId, String title, String linkUrl, String thumbnailUrl, LocalDate burnedAt,boolean isBurned, boolean isTimerEnabled) {
+		return new Toast(null, userId, clipId, title, linkUrl, null, thumbnailUrl, null, null, burnedAt, isBurned, isTimerEnabled);
 	}
 }

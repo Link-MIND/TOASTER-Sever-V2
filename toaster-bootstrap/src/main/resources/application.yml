@@ -18,6 +18,12 @@ spring:
         show_sql: false
         dialect: org.hibernate.dialect.MySQLDialect
 
+  batch:
+    jdbc:
+      initialize-schema: always
+    job:
+      enabled: false
+
 springdoc:
   api-docs:
     path: /v3/api-docs

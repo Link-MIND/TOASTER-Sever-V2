@@ -3,7 +3,7 @@ package com.app.toaster.application.service.restore_toast;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.app.toaster.adapter.out.persistence.burned_toast.BurnedToastPort;
+import com.app.toaster.adapter.out.persistence.toast.BurnedToastPort;
 import com.app.toaster.application.port.common.CheckToastOwnerPort;
 import com.app.toaster.application.port.read_toast.out.UpdateToastPort;
 import com.app.toaster.application.port.restore_toast.RestoreToastCommand;

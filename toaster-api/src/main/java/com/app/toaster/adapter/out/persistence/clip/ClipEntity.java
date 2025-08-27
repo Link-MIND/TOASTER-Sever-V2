@@ -100,6 +100,22 @@ class ClipEntity {
 		return false;
 	}
 
+	public boolean isUserInClipMembers(Long userId) {
+		ObjectMapper objectMapper = new ObjectMapper();
+		List<Long> memberList = objectMapper.convertValue(this.members, List.class);
+		if (memberList.contains(userId)) {
+			return true;
+		}
+		return false;
+	}
+
+	public void editTitle(String title) {
+		if (title == null || title.isBlank()) {
+			throw new CustomException(Error.BAD_REQUEST_VALIDATION, Error.BAD_REQUEST_VALIDATION.getMessage());
+		}
+		this.title = title;
+	}
+
 	/**
 	 * TODO: 생각해볼점.
 	 * 공유클립을 생성했을 때 기존 클립로직은 다 영향 받을듯.

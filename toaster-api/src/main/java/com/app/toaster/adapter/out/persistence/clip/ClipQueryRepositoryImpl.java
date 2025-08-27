@@ -5,7 +5,6 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @RequiredArgsConstructor
@@ -15,7 +14,6 @@ public class ClipQueryRepositoryImpl implements ClipQueryRepository{
     private final EntityManager entityManager;
 
     @Override
-    @Transactional(readOnly = true)
     public Integer findMaxPriorityByOwnerId(Long ownerId) {
         QClipEntity clip = QClipEntity.clipEntity;
 
@@ -29,7 +27,6 @@ public class ClipQueryRepositoryImpl implements ClipQueryRepository{
     }
 
     @Override
-    @Transactional
     public ClipEntity createClipWithMaxPriority(Long userId, String title) {
         // 1. 현재 최대 priority 조회
         Integer maxPriority = findMaxPriorityByOwnerId(userId);

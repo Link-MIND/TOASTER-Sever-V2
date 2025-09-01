@@ -51,7 +51,7 @@ class SaveToastService implements CreateToastUseCase {
 			throw new CustomException(Error.NOT_FOUND_USER_EXCEPTION, Error.NOT_FOUND_USER_EXCEPTION.getMessage());
 		}
 
-		if (clipId != null && !checkClipOwnerPort.existsByIdAndUserId(clipId, userId)) {
+		if (clipId != 0L && !checkClipOwnerPort.checkClipPermission(clipId, userId)) {
 			throw new CustomException(Error.UNAUTHORIZED_ACCESS, "해당 유저의 클립이 아닙니다.");
 		}
 	}

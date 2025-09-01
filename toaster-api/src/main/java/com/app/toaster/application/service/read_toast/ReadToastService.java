@@ -31,9 +31,9 @@ public class ReadToastService implements ReadToastUseCase {
 	}
 
 	private void validate(Long userId, Long toastId){
-		Toast toast = loadToastPort.loadToast(toastId);
-		if (!checkClipOwnerPort.checkClipPermission(toast.getClipId(), userId)) {
-			throw new CustomException(Error.UNAUTHORIZED_ACCESS, "해당 토스터에 대한 권한이 없습니다.");
+		Long clipId = loadToastPort.loadToast(toastId).getClipId();
+		if (clipId != 0L && !checkClipOwnerPort.checkClipPermission(clipId, userId)) {
+			throw new CustomException(Error.UNAUTHORIZED_ACCESS, "해당 유저의 클립이 아닙니다.");
 		}
 	}
 }

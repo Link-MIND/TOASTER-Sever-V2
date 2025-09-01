@@ -2,8 +2,11 @@ package com.app.toaster.adapter.out.persistence.toast;
 
 import java.util.List;
 
+import com.app.toaster.adapter.out.persistence.clip.ClipRepository;
 import com.app.toaster.application.port.common.CheckToastOwnerPort;
 import com.app.toaster.application.port.create_toast.out.SaveToastPort;
+import com.app.toaster.exception.Error;
+import com.app.toaster.exception.model.CustomException;
 import com.app.toaster.toast.model.Toast;
 import lombok.RequiredArgsConstructor;
 

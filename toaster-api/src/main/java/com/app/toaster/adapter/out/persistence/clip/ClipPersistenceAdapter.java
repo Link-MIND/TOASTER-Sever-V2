@@ -14,6 +14,18 @@ public class ClipPersistenceAdapter implements CheckClipOwnerPort, CheckClipMemb
     private final ClipRepository clipRepository;
 
     @Override
+    public boolean checkClipPermission(Long clipId, Long userId) {
+        ClipEntity clipEntity = clipRepository.findById(clipId).orElseThrow(
+            () -> new CustomException(Error.NOT_FOUND_CLIP_EXCEPTION, Error.NOT_FOUND_CLIP_EXCEPTION.getMessage())
+        );
+
+        return switch (clipEntity.getType()) {
+            case PRIVATE -> existsByIdAndUserId(clipId, userId);
+            case SHARED -> checkUserInClipMember(clipId, userId);
+        };
+    }
+
+    @Override
     public boolean existsByIdAndUserId(Long clipId, Long userId) {
         return clipRepository.existsByIdAndOwnerId(clipId, userId);
     }

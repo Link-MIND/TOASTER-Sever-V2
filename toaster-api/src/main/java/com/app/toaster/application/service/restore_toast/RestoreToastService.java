@@ -3,13 +3,16 @@ package com.app.toaster.application.service.restore_toast;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.app.toaster.adapter.out.persistence.toast.BurnedToastPort;
+import com.app.toaster.application.port.burn_toast.out.BurnedToastPort;
+import com.app.toaster.application.port.common.CheckClipOwnerPort;
 import com.app.toaster.application.port.common.CheckToastOwnerPort;
+import com.app.toaster.application.port.load_toast.out.LoadToastPort;
 import com.app.toaster.application.port.read_toast.out.UpdateToastPort;
 import com.app.toaster.application.port.restore_toast.RestoreToastCommand;
 import com.app.toaster.application.port.restore_toast.RestoreToastUseCase;
 import com.app.toaster.exception.Error;
 import com.app.toaster.exception.model.CustomException;
+import com.app.toaster.toast.model.Toast;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +21,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class RestoreToastService implements RestoreToastUseCase {
 
-	private final CheckToastOwnerPort checkToastOwnerPort;
+	private final LoadToastPort loadToastPort;
+	private final CheckClipOwnerPort checkClipOwnerPort;
 	private final UpdateToastPort updateToastPort;
 	private final BurnedToastPort burnedToastPort;
 
@@ -31,11 +35,10 @@ public class RestoreToastService implements RestoreToastUseCase {
 	}
 
 	private void validate(Long userId, Long toastId){
-		if (!checkToastOwnerPort.existsByIdAndUserId(toastId, userId)) {
-			throw new CustomException(Error.UNAUTHORIZED_ACCESS, "해당 유저의 토스트가 아닙니다.");
+		Toast toast = loadToastPort.loadToast(toastId);
+		if (!checkClipOwnerPort.checkClipPermission(toast.getClipId(), userId)) {
+			throw new CustomException(Error.UNAUTHORIZED_ACCESS, "해당 토스터에 대한 권한이 없습니다.");
 		}
 	}
-
-
 }
 

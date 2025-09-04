@@ -18,4 +18,11 @@ public class LoadUserInfoPersistenceAdapter implements LoadUserPort {
             () -> new NotFoundException(Error.NOT_FOUND_USER_EXCEPTION, Error.NOT_FOUND_USER_EXCEPTION.getMessage()))
         );
     }
+
+    @Override
+    public ToasterUser findBySocialId(String socialId) {
+        return UserMapper.toDomain(userRepository.findBySocialId(socialId).orElseThrow(
+            () -> new NotFoundException(Error.NOT_FOUND_USER_EXCEPTION, Error.NOT_FOUND_USER_EXCEPTION.getMessage()))
+        );
+    }
 }

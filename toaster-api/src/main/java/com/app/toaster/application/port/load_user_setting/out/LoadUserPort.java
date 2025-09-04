@@ -6,4 +6,6 @@ public interface LoadUserPort {
 
 	ToasterUser findUser(long userId);
 
+	ToasterUser findBySocialId(String socialId);
+
 }

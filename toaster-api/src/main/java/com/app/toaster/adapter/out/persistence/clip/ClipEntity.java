@@ -116,6 +116,11 @@ class ClipEntity {
 		this.title = title;
 	}
 
+	public void softDelete(Long userId) {
+		this.ownerId = null;
+		this.members = null;
+	}
+
 	/**
 	 * TODO: 생각해볼점.
 	 * 공유클립을 생성했을 때 기존 클립로직은 다 영향 받을듯.

@@ -37,6 +37,8 @@ public enum Success {
   	LOGIN_SUCCESS(HttpStatus.OK, "로그인 성공"),
     UPDATE_VISIBILITY_SHARE_CLIP_SUCCESS(HttpStatus.OK, "공유클립 visible state 변경 성공"),
 	UPDATE_SHARE_CLIP_TITLE_SUCCESS(HttpStatus.OK, "공유클립 제목 변경 성공"),
+	INVITE_SHARE_CLIP_SUCCESS(HttpStatus.OK, "공유클립 초대 성공"),
+
 
 	RE_ISSUE_TOKEN_SUCCESS(HttpStatus.OK, "토큰 재발급 성공"),
 	TOKEN_HEALTH_CHECKED_SUCCESS(HttpStatus.OK, "토큰 헬스체크 성공"),

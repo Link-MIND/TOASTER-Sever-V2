@@ -4,4 +4,6 @@ import java.util.List;
 
 public interface ToastQueryRepository {
     long bulkUpdateClipIdByIds(List<Long> toastIds, Long targetClipId);
+
+    List<ToastEntity> getExpiringToast(Long userId, int size);
 }

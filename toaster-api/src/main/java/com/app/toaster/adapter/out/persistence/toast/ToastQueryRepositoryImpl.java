@@ -21,4 +21,17 @@ public class ToastQueryRepositoryImpl implements ToastQueryRepository {
             .where(toast.id.in(toastIds))
             .execute();
     }
+
+    @Override
+    public List<ToastEntity> getExpiringToast(Long userId, int size) {
+        return queryFactory
+            .selectFrom(toast)
+            .where(toast.userId.eq(userId))
+            .where(toast.isRead.eq(false))
+            .where(toast.isTimerEnabled.eq(true))
+            .where(toast.isBurned.eq(false))
+            .orderBy(toast.burnedAt.asc())
+            .limit(size)
+            .fetch();
+    }
 }

@@ -45,6 +45,7 @@ class UserEntity extends BaseTimeEntity {
 	private String profile;
 
 	@Column(nullable = false)
+	@Enumerated(EnumType.STRING)
 	private OsType os;
 
 	@Column(nullable = true)

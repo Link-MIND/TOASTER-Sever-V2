@@ -27,6 +27,7 @@ public enum Success {
 	GET_SETTINGS_SUCCESS(HttpStatus.OK, "설정 페이지 조회 성공"),
 	GET_POPUP_SUCCESS(HttpStatus.OK, "팝업 정보 조회 성공"),
 	GET_RECENT_TOAST_SUCCESS(HttpStatus.OK, "최근 저장한 토스트 조회 성공"),
+	GET_EXPIRING_TOAST_SUCCESS(HttpStatus.OK, "곧 만료되는 타이머 조회 성공"),
 
 	GET_CATEORIES_SUCCESS(HttpStatus.OK, "전체 카테고리 조회 성공"),
 	GET_CATEORY_SUCCESS(HttpStatus.OK, "세부 카테고리 조회 성공"),

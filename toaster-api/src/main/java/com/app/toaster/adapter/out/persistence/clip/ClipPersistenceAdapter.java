@@ -4,6 +4,8 @@ import java.util.Objects;
 
 import com.app.toaster.application.port.common.CheckClipMemberPort;
 import com.app.toaster.application.port.common.CheckClipOwnerPort;
+import com.app.toaster.application.port.load_recent_toast.out.LoadClipPort;
+import com.app.toaster.clip.model.Clip;
 import com.app.toaster.exception.Error;
 import com.app.toaster.exception.model.CustomException;
 import com.app.toaster.toast.enums.ClipType;
@@ -13,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class ClipPersistenceAdapter implements CheckClipOwnerPort, CheckClipMemberPort {
+public class ClipPersistenceAdapter implements CheckClipOwnerPort, CheckClipMemberPort, LoadClipPort {
 
     private final ClipRepository clipRepository;
 
@@ -46,5 +48,14 @@ public class ClipPersistenceAdapter implements CheckClipOwnerPort, CheckClipMemb
             () -> new CustomException(Error.NOT_FOUND_CLIP_EXCEPTION, Error.NOT_FOUND_CLIP_EXCEPTION.getMessage())
         );
         return clipEntity.isUserInClipMembers(userId);
+    }
+
+    @Override
+    public Clip loadClip(Long clipId) {
+        ClipEntity clipEntity = clipRepository.findById(clipId).orElseThrow(
+            () -> new CustomException(Error.NOT_FOUND_CLIP_EXCEPTION, Error.NOT_FOUND_CLIP_EXCEPTION.getMessage())
+        );
+
+        return ClipMapper.toDomain(clipEntity);
     }
 }

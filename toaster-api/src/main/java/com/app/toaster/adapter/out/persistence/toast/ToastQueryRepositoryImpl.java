@@ -1,5 +1,8 @@
 package com.app.toaster.adapter.out.persistence.toast;
 
+import com.app.toaster.adapter.out.persistence.clip.QClipEntity;
+import com.app.toaster.toast.enums.ClipType;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -12,6 +15,7 @@ public class ToastQueryRepositoryImpl implements ToastQueryRepository {
 
     private final JPAQueryFactory queryFactory;
     private final QToastEntity toast = QToastEntity.toastEntity;
+    private final QClipEntity clip = QClipEntity.clipEntity;
 
     @Override
     public long bulkUpdateClipIdByIds(List<Long> toastIds, Long targetClipId) {
@@ -34,4 +38,24 @@ public class ToastQueryRepositoryImpl implements ToastQueryRepository {
             .limit(size)
             .fetch();
     }
+
+    @Override
+    public List<ToastEntity> getRecentToast(Long userId, int size, ClipType clipType) {
+        var query = queryFactory
+            .selectFrom(toast)
+            .leftJoin(clip).on(clip.id.eq(toast.clipId))
+            .where(toast.userId.eq(userId));
+
+        if (clipType == ClipType.PRIVATE) {
+            query.where(clip.id.isNull().or(clip.type.eq(ClipType.PRIVATE)));
+        } else if (clipType == ClipType.SHARED) {
+            query.where(clip.id.isNotNull().and(clip.type.eq(ClipType.SHARED)));
+        }
+
+        return query
+            .orderBy(toast.createdAt.desc())
+            .limit(size)
+            .fetch();
+    }
+
 }

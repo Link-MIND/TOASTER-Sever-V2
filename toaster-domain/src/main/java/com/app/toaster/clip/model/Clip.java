@@ -1,5 +1,7 @@
 package com.app.toaster.clip.model;
 
+import java.util.List;
+
 import com.app.toaster.toast.enums.ClipType;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,10 +14,10 @@ public class Clip {
     private final Long ownerId;
     private int priority;
     private final ClipType type;
-    private String members;
+    private List<Long> members;
 
     @Builder
-    public Clip(Long id, String title, Long ownerId, int priority, ClipType type, String members) {
+    public Clip(Long id, String title, Long ownerId, int priority, ClipType type, List<Long> members) {
         this.id = id;
         this.title = title;
         this.ownerId = ownerId;

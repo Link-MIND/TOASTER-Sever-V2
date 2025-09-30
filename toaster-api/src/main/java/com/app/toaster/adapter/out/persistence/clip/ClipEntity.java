@@ -88,9 +88,7 @@ class ClipEntity {
 	}
 
 	public boolean isUserInClipMembers(Long userId) {
-		ObjectMapper objectMapper = new ObjectMapper();
-		List<Long> memberList = objectMapper.convertValue(this.members, List.class);
-		if (memberList.contains(userId)) {
+		if (this.members.contains(userId)) {
 			return true;
 		}
 		return false;

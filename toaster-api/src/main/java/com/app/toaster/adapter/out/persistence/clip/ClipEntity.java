@@ -4,6 +4,7 @@ import com.app.toaster.exception.Error;
 import com.app.toaster.exception.model.BadRequestException;
 import com.app.toaster.exception.model.CustomException;
 import com.app.toaster.toast.enums.ClipType;
+import com.app.toaster.util.LongListToJsonConverter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -34,7 +35,9 @@ class ClipEntity {
 	@Enumerated(EnumType.STRING)
 	private ClipType type;
 
-	private String members;
+	@Column(columnDefinition = "json")
+	@Convert(converter = LongListToJsonConverter.class)
+	private List<Long> members;
 
 	@Builder
 	public ClipEntity(String title, Long ownerId, int priority, ClipType clipType) {
@@ -62,35 +65,19 @@ class ClipEntity {
 	}
 
 	public void addMember(Long newMemberId) {
-		ObjectMapper objectMapper = new ObjectMapper();
-		try {
-			List<Long> memberList = objectMapper.convertValue(this.members, List.class);
-			memberList.add(newMemberId);
-			this.members = objectMapper.writeValueAsString(memberList);
-		} catch (Exception e) {
-			throw new CustomException(Error.UNPROCESSABLE_ENTITY_CONVERT_EXCEPTION, Error.UNPROCESSABLE_ENTITY_CONVERT_EXCEPTION.getMessage());
-		}
+		List<Long> newMembers = new java.util.ArrayList<>(this.members);
+		newMembers.add(newMemberId);
+		this.members = newMembers;
 	}
 
 	public void exitMember(Long exitMemberId) {
-		ObjectMapper objectMapper = new ObjectMapper();
-		try {
-			List<Long> memberList = objectMapper.convertValue(this.members, List.class);
-			memberList.remove(exitMemberId); //TODO: object로 하긴했는데, 이거 인덱스로 오인하고 지우진않겠지?
-			this.members = objectMapper.writeValueAsString(memberList);
-		} catch (Exception e) {
-			throw new CustomException(Error.UNPROCESSABLE_ENTITY_CONVERT_EXCEPTION, Error.UNPROCESSABLE_ENTITY_CONVERT_EXCEPTION.getMessage());
-		}
+		List<Long> newMembers = new java.util.ArrayList<>(this.members);
+		newMembers.remove(exitMemberId);
+		this.members = newMembers;
 	}
 
-	private String makeOnlyOwnerState() {
-		List<Long> list = List.of(ownerId);
-		ObjectMapper objectMapper = new ObjectMapper();
-		try {
-			return objectMapper.writeValueAsString(list);
-		} catch (Exception e) {
-			throw new CustomException(Error.UNPROCESSABLE_ENTITY_CONVERT_EXCEPTION, Error.UNPROCESSABLE_ENTITY_CONVERT_EXCEPTION.getMessage());
-		}
+	private List<Long> makeOnlyOwnerState() {
+		return List.of(ownerId);
 	}
 
 	private boolean isEmptyMemberList() {
@@ -101,9 +88,7 @@ class ClipEntity {
 	}
 
 	public boolean isUserInClipMembers(Long userId) {
-		ObjectMapper objectMapper = new ObjectMapper();
-		List<Long> memberList = objectMapper.convertValue(this.members, List.class);
-		if (memberList.contains(userId)) {
+		if (this.members.contains(userId)) {
 			return true;
 		}
 		return false;

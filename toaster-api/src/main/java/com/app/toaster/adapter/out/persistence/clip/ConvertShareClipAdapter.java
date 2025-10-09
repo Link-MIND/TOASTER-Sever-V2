@@ -11,12 +11,13 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 class ConvertShareClipAdapter implements ConvertShareClipPort {
     private final ClipRepository clipRepository;
+    private final ClipMapper clipMapper;
     @Override
     public Clip convertShareClipToPrivate(Long userId, Long clipId) {
         ClipEntity clipEntity = clipRepository.findById(clipId)
             .orElseThrow(() -> new CustomException(Error.NOT_FOUND_CLIP_EXCEPTION, Error.NOT_FOUND_CLIP_EXCEPTION.getMessage()));
         clipEntity.changePrivate();
-        return ClipMapper.toDomain(clipEntity);
+        return clipMapper.toDomain(clipEntity);
     }
 
     @Override
@@ -24,6 +25,6 @@ class ConvertShareClipAdapter implements ConvertShareClipPort {
         ClipEntity clipEntity = clipRepository.findById(clipId)
             .orElseThrow(() -> new CustomException(Error.NOT_FOUND_CLIP_EXCEPTION, Error.NOT_FOUND_CLIP_EXCEPTION.getMessage()));
         clipEntity.changeShared();
-        return ClipMapper.toDomain(clipEntity);
+        return clipMapper.toDomain(clipEntity);
     }
 }

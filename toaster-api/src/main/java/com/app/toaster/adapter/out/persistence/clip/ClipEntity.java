@@ -38,6 +38,8 @@ class ClipEntity extends BaseTimeEntity {
 
 	private int priority;
 
+	private String thumbnail;
+
 	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
 	private ClipType type;
@@ -47,10 +49,11 @@ class ClipEntity extends BaseTimeEntity {
 	private List<Long> members;
 
 	@Builder
-	public ClipEntity(String title, Long ownerId, int priority, ClipType clipType) {
+	public ClipEntity(String title, Long ownerId, String thumbnail, int priority, ClipType clipType) {
 		this.title = title;
 		this.ownerId = ownerId;
 		this.members = null;
+		this.thumbnail = thumbnail;
 		this.priority = priority;
 		this.type = clipType;
 	}

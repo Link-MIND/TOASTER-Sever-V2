@@ -1,21 +1,23 @@
 package com.app.toaster.adapter.out.persistence.clip;
 
-import java.util.Objects;
-
 import com.app.toaster.application.port.common.CheckClipMemberPort;
 import com.app.toaster.application.port.common.CheckClipOwnerPort;
+import com.app.toaster.application.port.out.LoadSharedClipPort;
+import com.app.toaster.clip.model.Clip;
 import com.app.toaster.exception.Error;
 import com.app.toaster.exception.model.CustomException;
-import com.app.toaster.toast.enums.ClipType;
-
+import java.util.Objects;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class ClipPersistenceAdapter implements CheckClipOwnerPort, CheckClipMemberPort {
+public class ClipPersistenceAdapter implements CheckClipOwnerPort, CheckClipMemberPort,
+    LoadSharedClipPort {
 
     private final ClipRepository clipRepository;
+    private final ClipMapper clipMapper;
 
     @Override
     public boolean checkClipPermission(Long clipId, Long userId) {
@@ -46,5 +48,11 @@ public class ClipPersistenceAdapter implements CheckClipOwnerPort, CheckClipMemb
             () -> new CustomException(Error.NOT_FOUND_CLIP_EXCEPTION, Error.NOT_FOUND_CLIP_EXCEPTION.getMessage())
         );
         return clipEntity.isUserInClipMembers(userId);
+    }
+
+    @Override
+    public Clip findClipById(Long clipId) {
+        Optional<ClipEntity> clipEntity = clipRepository.findById(clipId);
+        return clipMapper.toDomain(clipEntity);
     }
 }

@@ -11,15 +11,17 @@ public class Clip {
 
     private final Long id;
     private String title;
+    private String thumbnail;
     private final Long ownerId;
     private int priority;
     private final ClipType type;
     private List<Long> members;
 
     @Builder
-    public Clip(Long id, String title, Long ownerId, int priority, ClipType type, List<Long> members) {
+    public Clip(Long id, String title, String thumbnail, Long ownerId, int priority, ClipType type, List<Long> members) {
         this.id = id;
         this.title = title;
+        this.thumbnail = thumbnail;
         this.ownerId = ownerId;
         this.priority = priority;
         this.type = type;

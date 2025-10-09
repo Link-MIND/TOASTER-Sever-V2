@@ -9,11 +9,12 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class CreateShareClipAdapter implements CreateShareClipPort {
     private final ClipQueryRepository clipQueryRepository;
+    private final ClipMapper clipMapper;
 
     @Override
     public Clip createShareClip(Long userId, String title) {
         // 우선순위는 공유클립 중 priority max값 +1
         ClipEntity shareClipEntity = clipQueryRepository.createClipWithMaxPriority(userId, title);
-        return ClipMapper.toDomain(shareClipEntity);
+        return clipMapper.toDomain(shareClipEntity);
     }
 }

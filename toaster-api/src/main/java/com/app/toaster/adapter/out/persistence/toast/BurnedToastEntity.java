@@ -1,20 +1,26 @@
 package com.app.toaster.adapter.out.persistence.toast;
 
-import jakarta.persistence.*;
+import com.app.toaster.burned_toast.enums.NotificationStatus;
+import com.app.toaster.entity.BaseTimeEntity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import java.time.LocalDate;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-
-import com.app.toaster.burned_toast.enums.NotificationStatus;
-
 @Entity
 @Table(name = "burnedToast")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-class BurnedToastEntity {
+class BurnedToastEntity extends BaseTimeEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

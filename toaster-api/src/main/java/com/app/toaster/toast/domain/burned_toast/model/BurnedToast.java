@@ -1,0 +1,21 @@
+package com.app.toaster.toast.domain.burned_toast.model;
+
+import com.app.toaster.toast.domain.burned_toast.enums.NotificationStatus;
+import java.time.LocalDate;
+
+import lombok.Getter;
+
+@Getter
+public class BurnedToast {
+	private final Long id;
+	private LocalDate burnedAt;
+	private final Long toastId;
+	private NotificationStatus notificationStatus;
+
+	public BurnedToast(Long id, LocalDate burnedAt, Long toastId, NotificationStatus notificationStatus) {
+		this.id = id;
+		this.burnedAt = burnedAt;
+		this.toastId = toastId;
+		this.notificationStatus = notificationStatus;
+	}
+}

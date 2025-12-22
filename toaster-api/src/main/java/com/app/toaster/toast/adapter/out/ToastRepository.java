@@ -11,4 +11,10 @@ public interface ToastRepository extends JpaRepository<ToastEntity, Long> {
 	long countByIdInAndUserId(List<Long> toastIds, Long userId);
 
 	List<ToastEntity> findByBurnedAtBeforeAndIsTimerEnabledTrueAndIsReadFalseAndIsBurnedFalse(LocalDate now);
+
+    long countByClipId(Long clipId);
+
+    long countByClipIdAndIsReadIsFalse(Long clipId);
+
+    long countByClipIdAndIsBurnedIsTrue(Long clipId);
 }

@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,15 +26,16 @@ class CreateToastController {
 	private final CreateToastUseCase createToastUseCase;
 
 	@Operation(summary = "토스트 생성", description = "새로운 링크 저장")
-	@PostMapping
+	@PostMapping("/{userId}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ApiResponse createToast(
 		// @UserId Long userId,
+		@PathVariable(value = "userId") Long userId,
 		@RequestBody CreateToastRequest requestDto
 	) {
 		// todo-mh 임의로 userId 1L로 설정, 추후 변경
 		CreateToastCommand command = new CreateToastCommand(
-			1L,
+			userId,
 			requestDto.linkUrl(),
 			requestDto.clipId(),
 			requestDto.isTimerEnabled()

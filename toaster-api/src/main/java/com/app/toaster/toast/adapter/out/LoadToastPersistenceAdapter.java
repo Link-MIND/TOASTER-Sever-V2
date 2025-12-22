@@ -33,17 +33,17 @@ public class LoadToastPersistenceAdapter implements LoadToastPort {
 
     @Override
     public long countToastsByClipId(Long clipId) {
-        return 0;
+        return toastRepository.countByClipId(clipId);
     }
 
     @Override
     public long countUnreadToastsByClipId(Long clipId) {
-        return 0;
+        return toastRepository.countByClipIdAndIsReadIsFalse(clipId);
     }
 
     @Override
     public long countBurnedToastsByClipId(Long clipId) {
-        return 0;
+        return toastRepository.countByClipIdAndIsBurnedIsTrue(clipId);
     }
 
     @Override

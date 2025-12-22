@@ -9,6 +9,7 @@ import com.app.toaster.exception.Error;
 import com.app.toaster.exception.model.NotFoundException;
 import com.app.toaster.toast.application.port.out.LoadToastPort;
 import com.app.toaster.toast.domain.toast.vo.ToastFilter;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,7 +34,8 @@ public class LoadSharedClipService implements LoadSharedClipUseCase {
         long unreadToastNum = loadToastPort.countUnreadToastsByClipId(clipId);
         long burnedToastNum = loadToastPort.countBurnedToastsByClipId(clipId);
 
-        Page<ToastDto> toasts = loadToastPort.findToastsByClipId(clipId, filter, pageable);
+        Page<ToastDto> toastsPage = loadToastPort.findToastsByClipId(clipId, filter, pageable);
+        List<ToastDto> toasts = toastsPage.getContent();
 
         return SharedClipResponseDto.of(totalToastNum, unreadToastNum, burnedToastNum, toasts);
     }

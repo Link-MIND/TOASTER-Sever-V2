@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -21,23 +22,24 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 @Tag(name = "Toast", description = "토스트(링크 저장) 관련 API")
 class MoveToastClipController {
-	private final MoveClipUseCase moveClipUseCase;
 
-	@Operation(summary = "토스트 클립 이동", description = "1개이상의 토스트 특정 클립으로 이동")
-	@PatchMapping("/clip")
-	@ResponseStatus(HttpStatus.OK)
-	public ApiResponse createToast(
-		// @UserId Long userId,
-		@RequestBody MoveClipRequest request
-	) {
-		// todo-mh 임의로 userId 1L로 설정, 추후 변경
-		MoveClipCommand command = new MoveClipCommand(
-			1L,
-			request.toastIds(),
-			request.targetClipId()
-		);
+    private final MoveClipUseCase moveClipUseCase;
 
-		moveClipUseCase.moveClip(command);
-		return ApiResponse.success(Success.UPDATE_TOAST_CLIP_SUCCESS);
-	}
+    @Operation(summary = "토스트 클립 이동", description = "1개이상의 토스트 특정 클립으로 이동")
+    @PatchMapping("/clip/{userId}")
+    @ResponseStatus(HttpStatus.OK)
+    public ApiResponse createToast(
+        @PathVariable(value = "userId") Long userId,
+        @RequestBody MoveClipRequest request
+    ) {
+        // todo-mh 임의로 userId 1L로 설정, 추후 변경
+        MoveClipCommand command = new MoveClipCommand(
+            userId,
+            request.toastIds(),
+            request.targetClipId()
+        );
+
+        moveClipUseCase.moveClip(command);
+        return ApiResponse.success(Success.UPDATE_TOAST_CLIP_SUCCESS);
+    }
 }

@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -23,14 +24,15 @@ class DeleteToastController {
 	private final DeleteToastUseCase deleteToastUseCase;
 
 	@Operation(summary = "토스트 삭제", description = "1개 이상의 링크 삭제")
-	@DeleteMapping
+	@DeleteMapping("/{userId}")
 	@ResponseStatus(HttpStatus.OK)
-	public ApiResponse deleteToast(
+	public ApiResponse<?> deleteToast(
 		// @UserId Long userId,
+		@PathVariable(value = "userId") Long userId,
 		@RequestBody DeleteToastRequest request
 	) {
 		// todo-mh 임의로 userId 1L로 설정, 추후 변경
-		DeleteToastCommand command = DeleteToastCommand.toCommand(1L, request.toastIds());
+		DeleteToastCommand command = DeleteToastCommand.toCommand(userId, request.toastIds());
 		deleteToastUseCase.deleteToast(command);
 		return ApiResponse.success(Success.DELETE_TOAST_SUCCESS);
 	}

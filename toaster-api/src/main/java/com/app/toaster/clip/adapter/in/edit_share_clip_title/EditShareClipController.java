@@ -1,6 +1,5 @@
 package com.app.toaster.clip.adapter.in.edit_share_clip_title;
 
-import com.app.toaster.auth.UserId;
 import com.app.toaster.clip.application.port.in.EditShareClipTitleUseCase;
 import com.app.toaster.dto.ApiResponse;
 import com.app.toaster.exception.Success;
@@ -18,9 +17,8 @@ class EditShareClipController {
 
     private final EditShareClipTitleUseCase editShareClipTitleUseCase;
 
-    @PatchMapping("/{clipId}")
-    ApiResponse<EditShareClipResponseDto> editShareClipTitle(@UserId Long userid, @PathVariable Long clipId, @RequestBody EditShareClipRequestDto editShareClipRequestDto){
+    @PatchMapping("/title/{userId}/{clipId}")
+    ApiResponse<EditShareClipResponseDto> editShareClipTitle(@PathVariable(value = "userId") Long userid, @PathVariable Long clipId, @RequestBody EditShareClipRequestDto editShareClipRequestDto){
         return ApiResponse.success(Success.UPDATE_SHARE_CLIP_TITLE_SUCCESS, editShareClipTitleUseCase.editClipTitle(EditShareClipTitleCommand.toCommand(userid,clipId,editShareClipRequestDto)));
-
     }
 }

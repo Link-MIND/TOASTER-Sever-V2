@@ -37,6 +37,6 @@ public class LoadSharedClipService implements LoadSharedClipUseCase {
         Page<ToastDto> toastsPage = loadToastPort.findToastsByClipId(clipId, filter, pageable);
         List<ToastDto> toasts = toastsPage.getContent();
 
-        return SharedClipResponseDto.of(totalToastNum, unreadToastNum, burnedToastNum, toasts);
+        return SharedClipResponseDto.of(clip.getId(), clip.getTitle(), totalToastNum, unreadToastNum, burnedToastNum, toasts);
     }
 }

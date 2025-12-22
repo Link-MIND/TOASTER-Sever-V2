@@ -1,6 +1,5 @@
 package com.app.toaster.clip.adapter.in.exit_share_clip_member;
 
-import com.app.toaster.auth.UserId;
 import com.app.toaster.clip.application.port.in.ExitShareClipUseCase;
 import com.app.toaster.dto.ApiResponse;
 import com.app.toaster.exception.Success;
@@ -17,8 +16,8 @@ class ExitShareClipMemberController {
 
     private final ExitShareClipUseCase exitShareClipUseCase;
 
-    @DeleteMapping("/{clipId}/member")
-    protected ApiResponse<ExitShareClipResponseDto> exitMemberInShareClip(@UserId Long userId, @PathVariable(name = "clipId") Long clipId){
-        return ApiResponse.success(Success.EXIT_SHARE_CLIP_SUCCESS, exitShareClipUseCase.exitShareClip(ExitShareClipCommand.of(userId, clipId)));
+    @DeleteMapping("/{clipId}/member/{userId}")
+    protected ApiResponse<ExitShareClipResponseDto> exitMemberInShareClip(@PathVariable(value = "userId") Long exitUserId, @PathVariable(name = "clipId") Long clipId){
+        return ApiResponse.success(Success.EXIT_SHARE_CLIP_SUCCESS, exitShareClipUseCase.exitShareClip(ExitShareClipCommand.of(exitUserId, clipId)));
     }
 }

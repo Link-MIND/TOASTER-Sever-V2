@@ -15,6 +15,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -50,7 +51,7 @@ class ClipEntity extends BaseTimeEntity {
 	public ClipEntity(String title, Long ownerId, int priority, ClipType clipType) {
 		this.title = title;
 		this.ownerId = ownerId;
-		this.members = null;
+		this.members = makeOnlyOwnerState();
 		this.priority = priority;
 		this.type = clipType;
 	}
@@ -72,7 +73,7 @@ class ClipEntity extends BaseTimeEntity {
 	}
 
 	public void addMember(Long newMemberId) {
-		List<Long> newMembers = new java.util.ArrayList<>(this.members);
+		List<Long> newMembers = new ArrayList<>(this.members);
 		newMembers.add(newMemberId);
 		this.members = newMembers;
 	}

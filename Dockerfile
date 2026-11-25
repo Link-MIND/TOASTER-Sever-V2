@@ -2,6 +2,6 @@ FROM amd64/amazoncorretto:17
 
 WORKDIR /app
 
-COPY ./toaster-bootstrap/build/libs/*.jar /app/app.jar
+COPY ./toaster-bootstrap/build/libs/*.jar /app/toaster-ios-v2.jar
 
-CMD ["java", "-Duser.timezone=Asia/Seoul", "-jar", "-Dspring.profiles.active=dev", "app.jar"]
+CMD ["java", "-Duser.timezone=Asia/Seoul", "-jar", "-Dspring.profiles.active=dev", "toaster-ios-v2.jar"]

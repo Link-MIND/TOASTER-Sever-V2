@@ -33,7 +33,8 @@ public class ClipPersistenceAdapter implements CheckClipOwnerPort, CheckClipMemb
         // 소유자가 아닌경우
         return switch (clipEntity.getType()) {
             case PRIVATE -> false;
-            case SHARED  -> checkUserInClipMember(clipId, userId);
+            // NOTE: checkUserInClipMember signature is (userId, clipId)
+            case SHARED  -> checkUserInClipMember(userId, clipId);
         };
     }
 

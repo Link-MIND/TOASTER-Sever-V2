@@ -1,10 +1,10 @@
 package com.app.toaster.toast.application.service.edit_toast_title;
 
-import com.app.toaster.global.port.CheckClipOwnerPort;
-import com.app.toaster.toast.adapter.out.UpdateToastPort;
 import com.app.toaster.exception.Error;
 import com.app.toaster.exception.model.CustomException;
-import com.app.toaster.toast.adapter.in.edit_toast.EditToastTitleCommand;
+import com.app.toaster.global.port.CheckClipOwnerPort;
+import com.app.toaster.toast.adapter.in.edit_toast.edit_title.EditToastTitleCommand;
+import com.app.toaster.toast.adapter.out.UpdateToastPort;
 import com.app.toaster.toast.application.port.in.EditToastTitleUseCase;
 import com.app.toaster.toast.application.port.out.LoadToastPort;
 import lombok.RequiredArgsConstructor;

@@ -2,6 +2,5 @@ rootProject.name = 'TOASTER-SERVER-V2'
 
 include 'toaster-api'
 include 'toaster-batch'
-include 'toaster-domain'
 include 'toaster-common'
 include 'toaster-bootstrap'

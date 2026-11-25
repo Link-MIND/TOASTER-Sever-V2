@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  toaster-ios-v2:
+    build: .
+    container_name: toaster-ios-v2
+    ports:
+      - "8080:8080"
+    networks:
+      - toaster-net
+
+  toaster-ios:
+    build:
+      context: ../TOASTER-Server/linkmind
+    container_name: toaster-ios-v1
+    ports:
+      - "8081:8080"
+    networks:
+      - toaster-net
+
+networks:
+  toaster-net:
+    driver: bridge

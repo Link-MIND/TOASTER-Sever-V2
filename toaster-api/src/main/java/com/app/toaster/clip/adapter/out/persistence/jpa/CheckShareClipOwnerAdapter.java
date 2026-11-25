@@ -14,7 +14,6 @@ public class CheckShareClipOwnerAdapter implements CheckShareClipOwnerPort {
 
     @Override
     public void check(Long clipId, Long userId) {
-        System.out.println(clipId+"hi"+ userId);
         if (!clipRepository.existsByIdAndOwnerId(clipId, userId)) {
             throw new ForbiddenException(Error.UNAUTHORIZED_ACCESS, Error.UNAUTHORIZED_ACCESS.getMessage());
         }

@@ -1,9 +1,9 @@
-package com.app.toaster.toast.adapter.in.edit_toast.controller;
+package com.app.toaster.toast.adapter.in.edit_toast.edit_title.controller;
 
 import com.app.toaster.dto.ApiResponse;
 import com.app.toaster.exception.Success;
-import com.app.toaster.toast.adapter.in.edit_toast.EditToastTitleCommand;
-import com.app.toaster.toast.adapter.in.edit_toast.EditToastTitleRequest;
+import com.app.toaster.toast.adapter.in.edit_toast.edit_title.EditToastTitleCommand;
+import com.app.toaster.toast.adapter.in.edit_toast.edit_title.EditToastTitleRequest;
 import com.app.toaster.toast.application.port.in.EditToastTitleUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

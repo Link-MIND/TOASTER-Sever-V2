@@ -3,6 +3,7 @@ package com.app.toaster.clip.adapter.in.create_share_clip;
 import com.app.toaster.clip.application.port.in.CreateShareClipUseCase;
 import com.app.toaster.dto.ApiResponse;
 import com.app.toaster.exception.Success;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +23,7 @@ class CreateShareClipController {
     private final CreateShareClipUseCase createShareClipUseCase;
 
     @PostMapping
-    ApiResponse<?> createShareClip(@RequestBody CreateShareClipRequest request) {
+    ApiResponse<?> createShareClip(@Valid @RequestBody CreateShareClipRequest request) {
         return ApiResponse.success(Success.CREATE_SHARE_CLIP_SUCCESS, createShareClipUseCase.createShareClip(CreateShareClipCommand.toCommand(request)));
     }
 

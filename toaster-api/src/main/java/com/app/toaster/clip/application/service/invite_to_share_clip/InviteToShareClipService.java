@@ -7,6 +7,7 @@ import com.app.toaster.clip.application.port.out.LoadSharedClipPort;
 import com.app.toaster.clip.domain.model.Clip;
 import com.app.toaster.exception.Error;
 import com.app.toaster.exception.model.BadRequestException;
+import com.app.toaster.exception.model.NotFoundException;
 import com.app.toaster.toast.domain.toast.enums.ClipType;
 import com.app.toaster.user.application.port.out.FindUserPort;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,9 @@ public class InviteToShareClipService implements InviteToShareClipUseCase {
         checkShareClipOwnerPort.check(clipId, userId);
 
         Clip clip = loadSharedClipPort.findClipById(clipId);
+        if (clip == null) {
+            throw new NotFoundException(Error.NOT_FOUND_CLIP_EXCEPTION, Error.NOT_FOUND_CLIP_EXCEPTION.getMessage());
+        }
         if (clip.getType() != ClipType.SHARED) {
             throw new BadRequestException(Error.BAD_REQUEST_CLIP_TYPE, Error.BAD_REQUEST_CLIP_TYPE.getMessage());
         }

@@ -1,4 +1,4 @@
-package com.app.toaster.toast.adapter.in.edit_toast;
+package com.app.toaster.toast.adapter.in.edit_toast.edit_title;
 
 import com.app.toaster.exception.Severity;
 import com.app.toaster.valid.TitleValid;

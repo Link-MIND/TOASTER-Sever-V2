@@ -57,7 +57,8 @@ class ClipEntity extends BaseTimeEntity {
 	}
 
 	public void changePrivate() {
-		if (this.type.equals(ClipType.PRIVATE) && !isEmptyMemberList()) { //주인만 있지않은 멤버 리스트는 private으로 못만들게
+		// 주인만 있지 않은 멤버 리스트는 private으로 못 만들게
+		if (this.type.equals(ClipType.SHARED) && !isEmptyMemberList()) {
 			throw new BadRequestException(Error.BAD_REQUEST_VISIBILITY_CLIP, Error.BAD_REQUEST_VISIBILITY_CLIP.getMessage());
 		}
 		this.type = ClipType.PRIVATE;
@@ -73,14 +74,27 @@ class ClipEntity extends BaseTimeEntity {
 	}
 
 	public void addMember(Long newMemberId) {
-		List<Long> newMembers = new ArrayList<>(this.members);
+		if (newMemberId == null) {
+			throw new BadRequestException(Error.BAD_REQUEST_VALIDATION, Error.BAD_REQUEST_VALIDATION.getMessage());
+		}
+
+		List<Long> currentMembers = (this.members == null ? makeOnlyOwnerState() : this.members);
+		if (currentMembers.contains(newMemberId)) {
+			return;
+		}
+		List<Long> newMembers = new ArrayList<>(currentMembers);
 		newMembers.add(newMemberId);
 		this.members = newMembers;
 	}
 
 	public void exitMember(Long exitMemberId) {
-		List<Long> newMembers = new java.util.ArrayList<>(this.members);
-		newMembers.remove(exitMemberId);
+		if (exitMemberId == null) {
+			throw new BadRequestException(Error.BAD_REQUEST_VALIDATION, Error.BAD_REQUEST_VALIDATION.getMessage());
+		}
+		// Remove all occurrences to avoid "exit" leaving duplicates behind.
+		List<Long> currentMembers = (this.members == null ? makeOnlyOwnerState() : this.members);
+		List<Long> newMembers = new ArrayList<>(currentMembers);
+		newMembers.removeIf(memberId -> memberId.equals(exitMemberId));
 		this.members = newMembers;
 	}
 
@@ -89,17 +103,11 @@ class ClipEntity extends BaseTimeEntity {
 	}
 
 	private boolean isEmptyMemberList() {
-		if (members.equals(makeOnlyOwnerState())) {
-			return true;
-		}
-		return false;
+		return members == null || members.equals(makeOnlyOwnerState());
 	}
 
 	public boolean isUserInClipMembers(Long userId) {
-		if (this.members.contains(userId)) {
-			return true;
-		}
-		return false;
+		return this.members != null && this.members.contains(userId);
 	}
 
 	public void editTitle(String title) {
